@@ -60,6 +60,14 @@ io.sockets.on('connection', function (socket) { // First connection
 		 }
 	});
 
+	socket.on('typing', function (data) { // Broadcast the message to all
+		if(socket.room) {
+		   var transmit = {message : "sender is typing................"};
+		   socket.broadcast.to(socket.room).emit('typing', transmit);
+		}
+   });
+	
+
 	socket.on('disconnect', function () { // Disconnection of the client
 	});
 });

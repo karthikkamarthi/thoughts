@@ -22,7 +22,7 @@ l||(a.returnValue=!1)}};(function(){window.addEventListener?(this.addEventListen
 
 var messageContainer, submitButton;
 var pseudo = "";
-
+var timeout;
 // Init
 $(function() {
 
@@ -36,9 +36,9 @@ $(function() {
 	messageContainer = $('#messageInput');
 	submitButton = $("#submit");
 	submitButton.click(function() {sentMessage();});
-	setHeight();
-	$('#messageInput').keypress(function (e) {
-	if (e.which == 13) {sentMessage();}});
+	$('#messageInput').keyup(function (e) {
+	socket.emit('typing');
+	});
 });
 
 //Socket.io
@@ -47,13 +47,22 @@ socket.on('connect', function() {
 	console.log('connected');
 	socket.emit('joinRoom', Chatter);
 });
-socket.on('nbUsers', function(msg) {
-	$("#nbUsers").html(msg.nb);
-});
+
 
 socket.on('message', function(data) {
 	addMessage(data['message'], 'receiver');
 	console.log(data);
+});
+
+
+socket.on('typing', function(data) {
+	if(timeout) {
+		window.clearTimeout(timeout);
+	}
+	$("#typing").text(data.message);
+	timeout = window.setTimeout(function() {
+		$("#typing").text("");
+	},1000);
 });
 
 //Help functions
