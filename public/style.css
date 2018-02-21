@@ -14,13 +14,31 @@ body {
 }
 
 #sender {
- width:98%;
- height:30%;
+ width:96%;
+ height:20%;
  background-color: cyan;
+ font-weight: bold;
+ color:black;
+ border-radius: 32px;
+ margin: 1%;
+ -ms-transform: rotate(359deg); /* IE 9 */
+ -webkit-transform: rotate(359deg); /* Safari */
+ transform: rotate(359deg);
 }
 
 #receiver {
 	height:30%;
-	width:98%;
-	background-color: orange;
+	width:96%;
+	background-color: red;
+	color:white;
+	font-weight: bold;
+	border-radius: 32px;
+	margin: 1%;
+	-ms-transform: rotate(361deg); /* IE 9 */
+ -webkit-transform: rotate(361deg); /* Safari */
+	transform: rotate(361deg);
+}
+
+#typing {
+	color:green;
 }
