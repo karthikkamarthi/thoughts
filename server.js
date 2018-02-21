@@ -2,11 +2,15 @@
 
 var appPort = 16558;
 
+
+var appPort = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+	ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
 // Librairies
 
 var express = require('express'), app = express();
 var http = require('http')
-  , server = http.createServer(app)
+  , server = http.createServer(app, ip)
   , io = require('socket.io').listen(server);
 
 
@@ -27,7 +31,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
   res.render('home.jade');
 });
-server.listen(appPort);
+server.listen(appPort,ip);
 // app.listen(appPort);
 console.log("Server listening on port " + appPort);
 
