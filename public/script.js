@@ -32,7 +32,7 @@ $(function() {
 		$('body').empty();
 		return;
 	}
-	
+	startVoice();
 	messageContainer = $('#messageInput');
 	submitButton = $("#submit");
 	submitButton.click(function() {sentMessage();});
@@ -72,6 +72,9 @@ function sentMessage() {
 			socket.emit('message', messageContainer.val());
 			addMessage(messageContainer.val(), 'sender');
 			messageContainer.val('');
+			recognition.stop();
+		} else {
+			recognition.start();
 		}
 }
 
@@ -79,3 +82,46 @@ function addMessage(msg, type) {
 	$("#" + type).text(msg);
 }
 
+function startVoice() {
+	var instructions = $("#instructions");
+	try {
+		var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+		 recognition = new SpeechRecognition();
+	  }
+	  catch(e) {
+		console.error(e);
+		$('.no-browser-support').show();
+		$('.app').hide();
+	  }
+
+	  recognition.onstart = function() { 
+		instructions.text('Voice recognition activated. Try speaking into the microphone.');
+	  }
+	  
+	  recognition.onspeechend = function() {
+		instructions.text('You were quiet for a while so voice recognition turned itself off.');
+	  }
+	  
+	  recognition.onerror = function(event) {
+		if(event.error == 'no-speech') {
+		  instructions.text('No speech was detected. Try again.');  
+		};
+	  }
+
+	  recognition.onresult = function(event) {
+
+		// event is a SpeechRecognitionEvent object.
+		// It holds all the lines we have captured so far. 
+		// We only need the current one.
+		socket.emit('typing');
+		var current = event.resultIndex;
+	  
+		// Get a transcript of what was said.
+		var transcript = event.results[current][0].transcript;
+	  
+		// Add the current transcript to the contents of our Note.
+		noteContent = messageContainer.val();
+		noteContent += transcript;
+		messageContainer.val(noteContent);
+	  }
+}

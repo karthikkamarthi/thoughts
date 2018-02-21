@@ -4,7 +4,6 @@ body {
 }
 
 #inputdiv {
-	margin-top:3%;
 	margin-left:1% !important;
 }
 
@@ -23,4 +22,12 @@ body {
 	height:30%;
 	width:98%;
 	background-color: orange;
+}
+
+#instructions {
+	color:navy;
+}
+
+#typing {
+	color:green;
 }
