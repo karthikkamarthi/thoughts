@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<link rel="stylesheet"  href="style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+		<script src='/socket.io/socket.io.js'></script>
+		<script src='script.js'></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</head>
+	<body>
+		<div class="container-fluid">
+				<div class="row">
+						<div class="col-sm-12" id ="sender">Messages flow here</div>
+						<div class="col-sm-12" id ="receiver">Messages flow here</div>
+					  </div>
+					  <div class="row">
+							<div class="col-sm-12 input-group">
+											<input type="text" id = 'messageInput' class="form-control" placeholder="msg" aria-describedby="sizing-addon2">
+											
+
+							</div>
+							<div class="col-sm-12">
+								<input class="btn btn-default" type="submit" value="@" id ="submit">
+					</div>
+						  </div>
+		  </div>
+
+		  <div class="modal" tabindex="-1" role="dialog" id ="pass">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title">Modal title</h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+					  <p>Modal body text goes here.</p>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-primary">Save changes</button>
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				  </div>
+				</div>
+			  </div>
+	</body>
+</html>
