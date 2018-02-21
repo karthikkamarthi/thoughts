@@ -47,7 +47,7 @@ io.sockets.on('connection', function (socket) { // First connection
 		if (data === "rite") {
 			socket.room= "meshup";
 			socket.join("meshup");
-			var transmit = {message : "sender has joined"};
+			var transmit = {message : "silkbot is connected"};
 			socket.broadcast.to(socket.room).emit('message', transmit);
 		}
 });
@@ -62,7 +62,7 @@ io.sockets.on('connection', function (socket) { // First connection
 
 	socket.on('typing', function (data) { // Broadcast the message to all
 		if(socket.room) {
-		   var transmit = {message : "sender is typing................"};
+		   var transmit = {message : "silkbot is typing................"};
 		   socket.broadcast.to(socket.room).emit('typing', transmit);
 		}
    });
