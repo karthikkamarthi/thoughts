@@ -30,7 +30,7 @@ app.use(express.static(__dirname + '/public'));
 // Render and send the main page
 
 app.get('/', function(req, res){
-  res.render('home.html');
+  res.render('index.html');
 });
 server.listen(appPort,ip);
 // app.listen(appPort);

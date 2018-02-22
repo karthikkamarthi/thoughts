@@ -25,7 +25,6 @@ var pseudo = "";
 var timeout;
 // Init
 $(function() {
-
 	Chatter = prompt("Please enter your password");
     if (Chatter) {
 	} else {
